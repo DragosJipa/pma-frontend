@@ -4,7 +4,7 @@ phases:
   install:
     commands:
       - echo "Installing dependencies..."
-      - npm install  # Install all dependencies from package.json
+      - npm install  # Install all the dependencies from package.json
   build:
     commands:
       - echo "Building the React app..."
