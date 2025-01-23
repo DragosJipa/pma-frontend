@@ -1,0 +1,83 @@
+/* client/src/components/navigation.css */
+
+/* Container styles */
+.bottom-nav-container {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border-top: 1px solid #e2e8f0;
+  }
+  
+  /* Button styles */
+  .bottom-nav-button {
+    padding: 8px 24px; /* px-6 py-3 */
+    font-size: 1rem; /* text-md */
+    font-weight: 600; /* font-semibold */
+    border-radius: 0.5rem; /* rounded-lg */
+    transition: all 0.3s ease; /* Smooth transition */
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    color: white;
+  }
+  
+  /* Hover and active states */
+  .bottom-nav-button:not(:disabled):hover {
+    opacity: 0.9;
+  }
+  
+  /* Specific button colors */
+  .replay-assessment {
+    background-color: #60a5fa; /* bg-blue-400 */
+  }
+  
+  .replay-assessment:hover {
+    background-color: #3b82f6; /* hover:bg-blue-500 */
+  }
+  
+  .edit-responses {
+    background-color: #38b2ac; /* bg-teal-400 */
+  }
+  
+  .edit-responses:hover {
+    background-color: #319795; /* hover:bg-teal-500 */
+  }
+  
+  .summary {
+    background-color: #6366f1; /* bg-indigo-400 */
+  }
+  
+  .summary:hover {
+    background-color: #4f46e5; /* hover:bg-indigo-500 */
+  }
+  
+  .report {
+    background-color: #34d399; /* bg-green-400 */
+  }
+  
+  .report:hover {
+    background-color: #10b981; /* hover:bg-green-500 */
+  }
+  
+  .roadmap {
+    background-color: #a78bfa; /* bg-purple-400 */
+  }
+  
+  .roadmap:hover {
+    background-color: #8b5cf6; /* hover:bg-purple-500 */
+  }
+  
+  /* Disabled state */
+  .bottom-nav-button:disabled {
+    background-color: #e2e8f0 !important; /* bg-gray-300 */
+    color: #a0aec0 !important; /* text-gray-500 */
+    cursor: not-allowed;
+  }
+  

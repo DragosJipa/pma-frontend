@@ -1,0 +1,280 @@
+@media (min-height: 800px) and (max-height: 900px) {
+    .pt-h80 {
+        padding-top: 20rem;
+    }
+}
+
+@media (min-height: 1000px) {
+    .pt-h96 {
+        padding-top: 24rem;
+    }
+}
+
+@media (min-width: 415px) and (max-width: 450px) {
+    .pt-w415 {
+        padding-top: 20rem;
+        padding-left: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .pt-w400 {
+        padding-top: 15rem;
+    }
+}
+
+.mt-neg-10 {
+    margin-top: -.35rem;
+}
+
+.mrg-2 {
+    margin-right: 2rem !important;
+}
+
+/* .gradient-border {
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+ */
+.focus-gradient:focus {
+    border: 2px solid transparent;
+    background-image: linear-gradient(#000, #000),
+        linear-gradient(90.01deg, #624BED 14.01%, #CE5682 80.31%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    outline: none;
+}
+
+.gradient-color-text {
+    background: linear-gradient(87.9deg, rgba(98, 75, 237, 1) -1.8%, rgba(206, 86, 130, 1) 69.61%);
+    background-size: 100% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
+}
+
+.gradient-color-text-2 {
+    background: linear-gradient(90deg, #FFFFFF, #FFFFFF),
+        linear-gradient(88.02deg, rgba(98, 75, 237, 0.4) 0.23%, rgba(206, 86, 130, 0.4) 46.03%);
+    background-size: 100% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
+}
+
+.gradient-bg {
+    background: linear-gradient(87.9deg, rgba(98, 75, 237, 1) -1.8%, rgba(206, 86, 130, 1) 69.61%);
+}
+
+.gradient-border {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    background-color: var(--bg-color, #202020);
+}
+
+.gradient-border-large {
+    position: relative;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    background-color: var(--bg-color, #202020);
+}
+
+.gradient-border::before,
+.gradient-border-large::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    background: linear-gradient(90.01deg, #624BED 14.01%, #CE5682 80.31%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.gradient-border::before {
+    margin: -1px;
+}
+
+.gradient-border-large::before {
+    margin: -2px;
+}
+
+.gradient-border:hover::before,
+.gradient-border-large:hover::before {
+    opacity: 1;
+}
+
+.gradient-border-active {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    background-color: var(--bg-color, #202020);
+}
+
+.gradient-border-active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: -1px;
+    border-radius: inherit;
+    background: linear-gradient(90.01deg, #624BED 14.01%, #CE5682 80.31%);
+    z-index: -1;
+    opacity: 1;
+}
+
+/* Add these classes to your CSS */
+.page-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* roadmap.css */
+.hover.gradient-border-card::before {
+    opacity: 1;
+}
+
+.hover .group-hover\:bg-gradient-to-r {
+    background: linear-gradient(to right, #624BED, #CE5682);
+}
+
+.gradient-border-card {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+}
+
+.gradient-border-card-large {
+    position: relative;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    background-color: var(--bg-color, #202020);
+}
+
+.gradient-border-card::before,
+.gradient-border-card-large::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    padding: 1px;
+    /* Adjust padding to ensure the gradient border is consistent */
+    background: linear-gradient(90.01deg, #624BED 14.01%, #CE5682 80.31%);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.gradient-border-card::before {
+    margin: -1px;
+}
+
+.gradient-border-card-large::before {
+    margin: -2px;
+}
+
+.gradient-border-card:hover::before,
+.gradient-border-card-large:hover::before {
+    opacity: 1;
+}
+
+.gradient-border-card-active {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    background-color: var(--bg-color, #202020);
+}
+
+.gradient-border-card-active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: -1px;
+    border-radius: inherit;
+    background: linear-gradient(90.01deg, #624BED 14.01%, #CE5682 80.31%);
+    z-index: -1;
+    opacity: 1;
+}
+
+.hover.gradient-border-card-always::before {
+    opacity: 1;
+}
+
+.gradient-border-card-always {
+    position: relative;
+    border: 1px solid #FFFFFF1A;
+    background-clip: padding-box;
+}
+
+.gradient-border-card-always:hover {
+    border: 1px solid transparent !important;
+}
+
+.gradient-border-card-always::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    border-radius: inherit;
+    background: linear-gradient(90.01deg, #624BED 14.01%, #CE5682 80.31%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.gradient-border-card-always:hover::before {
+    opacity: 1;
+    border: 1px solid transparent !important;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.planet-image {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 1200px;
+}
+
+.content-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 2rem;
+    pointer-events: auto;
+}

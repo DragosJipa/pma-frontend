@@ -1,0 +1,15 @@
+.gradient-text {
+    background: linear-gradient(90deg, #624BED 0%, #CE5682 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-large {
+    background: linear-gradient(90deg, #624BED 0%, #CE5682 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 32px;
+    /* Increase font size slightly */
+    padding: 0.5rem 0;
+    /* Add vertical padding to show more of the gradient */
+}

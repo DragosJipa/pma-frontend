@@ -1,0 +1,181 @@
+// client/src/components/roadmap.js
+
+import React from 'react';
+import './roadmap.css';
+import BottomNavigation from './navigation'; // Import BottomNavigation
+
+const Roadmap = () => {
+  const milestones = [
+    { id: 'A', title: 'Sample Text A', description: 'This is a sample text.', position: 'center', left: '0%' },
+    { id: 'B', title: 'Sample Text B', description: 'This is a sample text.', position: 'above', left: '5%' },
+    { id: 'C', title: 'Sample Text C', description: 'This is a sample text.', position: 'below', left: '50%' },
+    { id: 'D', title: 'Sample Text D', description: 'This is a sample text.', position: 'above', left: '75%' },
+    { id: 'E', title: 'Sample Text E', description: 'This is a sample text.', position: 'center', left: '90%' },
+  ];
+
+  const phases = [
+    { id: 'phase-1', title: 'Phase 1 here', description: 'Lore ipsum tralala si trululu', position: 'below' },
+    { id: 'phase-2', title: 'Phase 2 here', description: 'Lore ipsum tralala si trululu', position: 'above' },
+    { id: 'phase-3', title: 'Phase 3 here', description: 'Lore ipsum tralala si trululu', position: 'below' },
+  ];
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gradient-to-r from-blue-50 to-blue-100">
+      <div className="roadmap-container mb-16"> {/* Added mb-16 for space for bottom navigation */}
+        <h2 className="roadmap-title">Your Product Maturity Roadmap</h2>
+        <div className="roadmap-line">
+          {milestones.map((milestone, index) => (
+            <div
+              key={index}
+              className="roadmap-milestone"
+              style={{
+                left: index === milestones.length - 1 ? 'calc(100% - 70px)' : milestone.left, // Adjust for the last item
+                bottom: milestone.position === 'above' ? '30px' : 'auto',  // Ensure bottom position for 'above'
+                top: milestone.position === 'below' ? '30px' : 'auto'  // Ensure top position for 'below'
+              }}
+            >
+              <div className="milestone-marker">{milestone.id}</div>
+              <div className={`milestone-text ${milestone.position}`}>
+                <h3>{milestone.title}</h3>
+                <p>{milestone.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom Navigation */}
+      <BottomNavigation />
+    </div>
+  );
+};
+
+export default Roadmap;
+
+
+
+// client/src/components/roadmap.js
+
+import React, { useContext, useState } from 'react';
+import './roadmap.css';
+import BottomNavigation from './navigation'; // Import BottomNavigation
+import { AssessmentContext } from '../context/assessmentContext'; // Import AssessmentContext
+
+const Roadmap = () => {
+  const { assessmentData } = useContext(AssessmentContext); // Access assessment data from context
+
+  // State to track which milestone is hovered
+  const [hoveredMilestone, setHoveredMilestone] = useState(null);
+
+  // Check if assessment data and interpretation are available
+  if (!assessmentData || !assessmentData.interpretation) {
+    return (
+      <div className="flex items-center justify-center min-h-screen text-xl font-semibold text-gray-600">
+        No roadmap data available. Please complete the assessment first.
+      </div>
+    );
+  }
+
+  const { roadmap_milestones: milestones, roadmap_phases: phases } = assessmentData.interpretation; // Destructure from interpretation
+
+  // Ensure roadmap data is available and correctly structured
+  if (!milestones || !phases || milestones.length === 0 || phases.length === 0) {
+    return (
+      <div className="flex items-center justify-center min-h-screen text-xl font-semibold text-gray-600">
+        No roadmap data available. Please complete the assessment first.
+      </div>
+    );
+  }
+
+  // Convert milestones to structured format
+  const structuredMilestones = milestones.map((milestone, index) => {
+    let position = 'center'; // Default position for first and last milestones
+
+    if (index > 0 && index < milestones.length - 1) {
+      // Determine position based on index for alternating UI pattern, excluding the first and last
+      // position = index % 2 === 0 ? 'above' : 'below';
+    }
+
+    // Use the left position provided in JSON, or calculate if missing
+    const left = milestone.left || `${(index / (milestones.length - 1)) * 100}%`;
+
+    return {
+      id: milestone.milestone_id,
+      title: milestone.title,
+      description: milestone.description,
+      position,
+      left,
+    };
+  });
+
+  // Calculate distances between each milestone based on their 'left' position
+  const distances = structuredMilestones.map((milestone, index, array) => {
+    if (index === 0) return null; // No previous milestone to calculate distance from
+
+    // Convert 'left' percentage to a number
+    const currentLeft = parseFloat(milestone.left);
+    const previousLeft = parseFloat(array[index - 1].left);
+
+    // Calculate the distance between current and previous milestone
+    const distance = currentLeft - previousLeft;
+
+    return distance.toFixed(2); // Round to 2 decimal places
+  });
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-start p-4 bg-gradient-to-r from-blue-50 to-blue-100">
+      <div className="roadmap-container mb-16"> {/* Added mb-16 for space for bottom navigation */}
+        <h2 className="roadmap-title">Your Product Maturity Roadmap</h2>
+        <div className="roadmap-line">
+          {structuredMilestones.map((milestone, index) => (
+            <React.Fragment key={milestone.id}>
+              {/* Render Milestone */}
+              <div
+                className="roadmap-milestone"
+                style={{
+                  left: index === structuredMilestones.length - 1 ? 'calc(100% - 70px)' : milestone.left, // Adjust for the last item
+                  bottom: milestone.position === 'above' ? '30px' : 'auto',  // Ensure bottom position for 'above'
+                  top: milestone.position === 'below' ? '30px' : 'auto'  // Ensure top position for 'below'
+                }}
+                onMouseEnter={() => setHoveredMilestone(milestone.id)} // Set hovered milestone on mouse enter
+                onMouseLeave={() => setHoveredMilestone(null)} // Reset hovered milestone on mouse leave
+              >
+                {/* Add vertical dotted line (phase-boundary) */}
+                <div className="phase-boundary"></div>
+                <div className="milestone-marker">{milestone.id}</div>
+                <div className={`milestone-text ${milestone.position}`}>
+                  <h3>{milestone.title}</h3>
+                  {/* Show description only on hover */}
+                  {hoveredMilestone === milestone.id && (
+                    <p>{milestone.description}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Render Phase Container after the corresponding milestone */}
+              {index < phases.length && (
+                <div
+                  className="phase-container"
+                  style={{
+                    width: `${distances[index + 1]}%`, // Use the calculated distance as the width
+                    left: milestone.left, // Align with the start milestone of the phase
+                    bottom: '200px', // Position phase container 350px above the roadmap line
+                    position: 'absolute', // Absolute positioning for flexibility
+                    transform: 'translateX(35px)', // No transform needed; starts directly from the milestone
+                  }}
+                >
+                  <span className="phase-text">{phases[index].title}</span>
+                </div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom Navigation */}
+      <BottomNavigation />
+    </div>
+  );
+};
+
+export default Roadmap;
