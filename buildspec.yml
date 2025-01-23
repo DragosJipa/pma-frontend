@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing dependencies..."
+      - npm install  # Install all dependencies from package.json
+  build:
+    commands:
+      - echo "Building the React app..."
+      - npm run build  # Create the production build (outputs to the build/ directory)
+  post_build:
+    commands:
+      - echo "Build phase completed."
+
+artifacts:
+  files:
+    - '**/*'  # Include all files in the build output
+  base-directory: build  # Specify the build directory where the React production files are located
