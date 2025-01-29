@@ -48,7 +48,7 @@ const ProductMaturityAssessment = () => {
 
 
     // const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://product-maturity.onrender.com';
-    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'http://13.53.42.107';
+    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://api.pma.moduscreate.com';
     console.log('baseURL:', baseURL, process.env.NODE_ENV, process.env.REACT_APP_HUBSPOT_OAUTH_TOKEN);
 
     const getSectionTitle = (index) => {

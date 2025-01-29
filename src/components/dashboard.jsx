@@ -85,7 +85,7 @@ const Dashboard = () => {
     };
 
     // const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://product-maturity.onrender.com';
-    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'http://13.53.42.107';
+    const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://api.pma.moduscreate.com';
 
     const handleDownload = async () => {
         try {
