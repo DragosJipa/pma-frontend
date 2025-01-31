@@ -89,11 +89,11 @@ const Dashboard = () => {
 
     const handleDownload = async () => {
         try {
-            if (!assessmentData?.interpretation?.pdf) {
+            if (!assessmentData?.interpretation?.pdfDataUri) {
                 throw new Error('No PDF data available');
             }
 
-            let base64Data = assessmentData.interpretation.pdf;
+            let base64Data = assessmentData.interpretation.pdfDataUri;
 
             // if (!base64Data.startsWith('data:application/pdf;base64,')) {
             //     base64Data = `data:application/pdf;base64,${base64Data}`;
@@ -108,10 +108,10 @@ const Dashboard = () => {
 
             console.log('PDF downloaded successfully');
 
-            await axios.post(`${baseURL}/api/mail`, {
-                pdf: base64Data,
-                email: assessmentData?.responses?.email
-            });
+            // await axios.post(`${baseURL}/api/mail`, {
+            //     pdf: base64Data,
+            //     email: assessmentData?.responses?.email
+            // });
             console.log('Email sent successfully');
         } catch (error) {
             console.error('Error handling download:', error);
@@ -271,10 +271,13 @@ const Dashboard = () => {
                                 { label: 'Detailed Analysis', value: 'detailedAnalysis' },
                                 { label: 'Risks & Recommendations', value: 'risksRecommendations' },
                                 { label: 'Roadmap', value: 'roadmap' },
+                                { value: 'downloadReport', label: 'Download Report' },
                             ]}
                             value={activeTab}
                             onChange={(value) => handleTabChange(value)}
+                            onDownload={handleDownload}
                             isDashboard={true}
+                            downloadIcon={downloadIcon}
                         />
                     </span>
                     <nav className="relative hidden sm:block">

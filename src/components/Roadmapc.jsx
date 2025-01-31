@@ -33,12 +33,14 @@ const Roadmapc = ({ goalCards }) => {
     const scrollContainerRef = useRef(null);
     const cardsContainerRef = useRef(null);
     const singleCardRef = useRef(null);
+    const cardRefs = useRef([]);
 
     const [hoveredPhase, setHoveredPhase] = useState(null);
     const [containerWidth, setContainerWidth] = useState(0);
     const [lineWidth, setLineWidth] = useState(0);
     const [cardWidth, setCardWidth] = useState(0);
     const [gapBetweenCards, setGapBetweenCards] = useState(32);
+    const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
     useEffect(() => {
         if (cardsContainerRef.current && singleCardRef.current) {
@@ -78,6 +80,29 @@ const Roadmapc = ({ goalCards }) => {
         scrollContainer.scrollLeft = scrollContainer.scrollLeft - walk;
     };
 
+
+    const scrollToCard = (index) => {
+        if (cardRefs.current[index]) {
+            const scrollContainer = scrollContainerRef.current;
+            const cardElement = cardRefs.current[index];
+            const offsetLeft = cardElement.offsetLeft - 80;
+            scrollContainer.scrollTo({ left: offsetLeft, behavior: 'smooth' });
+            setCurrentCardIndex(index);
+        }
+    };
+
+    const handleNext = () => {
+        if (currentCardIndex < goalCards.length - 1) {
+            scrollToCard(currentCardIndex + 1);
+        }
+    };
+
+    const handlePrevious = () => {
+        if (currentCardIndex > 0) {
+            scrollToCard(currentCardIndex - 1);
+        }
+    };
+
     return (
         <>
             <div className="flex items-center gap-4 sm:px-32 mobile-s:px-4">
@@ -88,12 +113,12 @@ const Roadmapc = ({ goalCards }) => {
                     Roadmap
                 </span>
                 <div className="sm:flex mobile-s:hidden flex gap-2 place-self-end">
-                    <button className="w-24 h-16 sm:w-16 sm:h-16 rounded-full bg-[#ffffff10] flex items-center justify-center">
+                    <button className="w-24 h-16 sm:w-16 sm:h-16 rounded-full bg-[#ffffff10] flex items-center justify-center" onClick={handlePrevious}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                             <path d="M15 18l-6-6 6-6" />
                         </svg>
                     </button>
-                    <button className="w-24 h-16 sm:w-16 sm:h-16 rounded-full bg-[#ffffff10] flex items-center justify-center">
+                    <button className="w-24 h-16 sm:w-16 sm:h-16 rounded-full bg-[#ffffff10] flex items-center justify-center" onClick={handleNext}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                             <path d="M9 18l6-6-6-6" />
                         </svg>
@@ -152,7 +177,10 @@ const Roadmapc = ({ goalCards }) => {
                     {/* Cards container */}
                     <div className="flex gap-8 items-stretch" ref={cardsContainerRef}>
                         {goalCards.map((card, index) => (
-                            <div className="flex-1 mobile-s:min-w-[360px] mobile-m:min-w-[400px] sm:min-w-[750px] items-stretch flex-shrink-0" key={index} ref={singleCardRef}>
+                            <div className="flex-1 mobile-s:min-w-[360px] mobile-m:min-w-[400px] sm:min-w-[750px] items-stretch flex-shrink-0" key={index} ref={el => {
+                                cardRefs.current[index] = el;
+                                if (index === 0) singleCardRef.current = el;
+                            }}>
                                 <GoalCard
                                     key={index}
                                     goal={card.goal}

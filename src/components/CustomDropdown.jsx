@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 
-const CustomDropdown = ({ options, value, onChange, isDashboard = false }) => {
+const CustomDropdown = ({ options, value, onChange, isDashboard = false, onDownload, downloadIcon }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOptionClick = (optionValue) => {
-        onChange(optionValue);
+        if (optionValue === 'downloadReport') {
+            onDownload();
+        } else {
+            onChange(optionValue);
+        }
         setIsOpen(false);
     };
 
@@ -40,7 +44,14 @@ const CustomDropdown = ({ options, value, onChange, isDashboard = false }) => {
                             className="py-2 px-4 hover:bg-gray-700 cursor-pointer"
                             onClick={() => handleOptionClick(option.value)}
                         >
-                            {option.label}
+                            {option.value === 'downloadReport' &&
+                                <button className="inline-flex items-center justify-center font-ibm-plex-mono text-white rounded-full px-3 py-1 2xl:px-6 2xl:py-2 text-xs 2xl:text-sm font-medium transition-all bg-gradient-to-r from-[#624BED] to-[#CE5682]"
+                                >
+                                    <span className='mr-1'>{downloadIcon}</span>
+                                    Download Report
+                                </button>
+                            }
+                            {option.label !== 'Download Report' && option.label}
                         </div>
                     ))}
                 </div>

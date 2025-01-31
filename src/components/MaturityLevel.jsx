@@ -39,9 +39,11 @@ const MaturityLevel = ({ maturityLevel }) => {
                             <div className="flex flex-col">
                                 <h3 className="text-xl 3xl:text-2xl font-ibm-plex-mono text-white">Ready to Level Up Your Product?</h3>
                                 <p className="text-sm 3xl:text-base text-white/65 font-ibm-plex-mono">Modus can help you implement these recommendations and achieve your product goals faster.</p>
-                                <button className="mt-4 px-4 py-2 font-ibm-plex-mono border border-white rounded-full text-xs 3xl:text-sm text-white hover:bg-black transition-colors self-start">
+                                <a href="https://moduscreate.com/contact/"
+
+                                    className="mt-4 px-4 py-2 font-ibm-plex-mono border border-white rounded-full text-xs 3xl:text-sm text-white hover:bg-black transition-colors self-start">
                                     Partner with Modus
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>

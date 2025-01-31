@@ -192,11 +192,11 @@ const LandingPage = () => {
                                         className="md:inline-flex items-center gap-2 font-ibm-plex-mono text-white rounded-full px-6 py-2 mobile-s:text-sm mobile-m:text-base mobile-l:text-lg font-medium transition-all bg-gradient-to-r from-[#624BED] to-[#CE5682]">
                                         Take the Free Assessment
                                     </button>
-                                    <button
+                                    <a href="https://moduscreate.com/contact/"
                                         className="border border-white hover:border-white text-white px-6 py-3 mobile-s:text-sm mobile-m:text-lg rounded-full transition duration-300"
                                     >
                                         Talk to an Expert
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                             <img src="/planet.svg" alt="planet" className="planet-image"
