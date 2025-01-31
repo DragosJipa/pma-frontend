@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import axios from 'axios';
 import { populateDummyResponses } from '../utils/formUtils';
 import { useCheckProcessingStatus } from '../utils/formUtils';
@@ -95,6 +95,23 @@ const ProductMaturityAssessment = () => {
         }
     }, [isSubmitted, assessmentData, checkProcessingStatus]);
 
+    const isPersonalEmailDomain = (domain) => {
+        const personalDomains = [
+            'gmail.com',
+            'yahoo.com',
+            'hotmail.com',
+            'outlook.com',
+            'aol.com',
+            'icloud.com',
+            'mail.com',
+            'proton.me',
+            'protonmail.com',
+            'me.com',
+            'live.com',
+            'msn.com'
+        ];
+        return personalDomains.includes(domain.toLowerCase());
+    };
 
     const handleInputChange = (questionId, value) => {
         setFormData({
@@ -106,29 +123,34 @@ const ProductMaturityAssessment = () => {
             const newErrors = { ...errors };
             delete newErrors[questionId];
             setErrors(newErrors);
-            // window._hsq.push(['trackEmail', {
-            //     id: questionId,
-            //     value: value,
-            // }]);
         }
-
-        // if (window._hsq) {
-        //     console.log('window._hsq:', window._hsq[window._hsq.length - 1][1].value);
-        // }
     };
-    const handleDotClick = (index) => {
-        setInsideCurrentQuestionIndex(index);
-    }
 
+    const handleDotClick = (index) => {
+        const email = formData.email;
+        if (!email) {
+            setErrors({ ...errors, email: 'Email is required.' });
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+            setErrors({ ...errors, email: 'Please enter a valid email address.' });
+        } else {
+            const domain = email.split('@')[1];
+            if (isPersonalEmailDomain(domain)) {
+                setErrors({ ...errors, email: 'Please enter a business email address.' });
+            } else {
+                setInsideCurrentQuestionIndex(index);
+            }
+        }
+    };
     console.log('each question formData:', formData);
 
-
-    const handleNext = (e) => {
+    const handleNext = useCallback((e) => {
         e.preventDefault();
         if (!formData.email) {
             setErrors({ ...errors, email: 'Email is required.' });
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
             setErrors({ ...errors, email: 'Please enter a valid email address.' });
+        } else if (isPersonalEmailDomain(formData.email.split('@')[1])) {
+            setErrors({ ...errors, email: 'Please enter a business email address.' });
         } else {
             setLastAction('forward');
             const isLastInnerQuestion = questions[currentQuestionIndex].questions.length - 1 === insideCurrentQuestionIndex;
@@ -182,7 +204,20 @@ const ProductMaturityAssessment = () => {
                     });
             }
         }
-    };
+    }, [formData, errors, questions, currentQuestionIndex, insideCurrentQuestionIndex, isEmail, baseURL, checkProcessingStatus, assessmentData, setAssessmentData]);
+
+    useEffect(() => {
+        const handleKeyPress = (e) => {
+            if (e.key === "Enter" && formData.email) {
+                handleNext(e);
+            }
+        };
+
+        document.addEventListener("keydown", handleKeyPress);
+        return () => {
+            document.removeEventListener("keydown", handleKeyPress);
+        };
+    }, [formData, handleNext]);
 
 
     const handlePrevious = (e) => {
@@ -226,6 +261,7 @@ const ProductMaturityAssessment = () => {
             </div>
         );
     }
+
 
     return (
         // <div className="flex flex-col items-start justify-start h-screen bg-customBG text-white p-4 sm:px-14 md:px-20 lg:px-32 overflow-hidden">

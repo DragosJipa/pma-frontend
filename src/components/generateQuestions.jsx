@@ -89,7 +89,6 @@ const GenerateQuestions = ({ questions, formData, handleInputChange, errors, isF
                     </div>
                 )}
 
-
                 {isRadio && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {questions?.options?.map((option, index) => (
@@ -161,7 +160,9 @@ const GenerateQuestions = ({ questions, formData, handleInputChange, errors, isF
                             required
                         />
                         {errors[questions?.id] && (
-                            <p className="text-errorRed text-xl mt-5 p-2 font-ibm-plex-mono bg-errorBG inline-block">{errors[questions?.id]}</p>
+                            <div>
+                                <p className="text-errorRed text-xl mt-5 p-2 font-ibm-plex-mono bg-errorBG inline-block">{errors[questions?.id]}</p>
+                            </div>
                         )}
                         <span className='mt-10 text-disclaimerTextBG text-sm lg:base font-ibm-plex-mono'>By submitting this form, you acknowledge that the information you provide will be processed according to our <a href="https://moduscreate.com/privacy-policy/" className='inline-flex underline font-bold text-white/60'>Privacy Policy.</a></span>
                     </div>
