@@ -1,14 +1,23 @@
-import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { Suspense, lazy, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AssessmentProvider } from './context/assessmentContext';
+// import ReactGA from "react-ga";
 
 const StartPage = lazy(() => import('./components/startPage'));
 const LandingPage = lazy(() => import('./components/landingPage'));
 const ProductMaturityDesignForm = lazy(() => import('./components/productMaturityDesignForm'));
 const Dashboard = lazy(() => import('./components/dashboard'));
 const Disclaimer = lazy(() => import('./components/Disclaimer'));
+const TRACKING_ID = "G-FJ96KMB5TG";
+// ReactGA.initialize(TRACKING_ID);
 
 function App() {
+
+  // useEffect(() => {
+  //   ReactGA.pageview(window.location.pathname + window.location.search);
+  // }, []);
+
+
   return (
     <AssessmentProvider>
       <Router>
