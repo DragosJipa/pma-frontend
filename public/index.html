@@ -24,14 +24,23 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
   <title>Product Maturity Assessment | Modus Create</title>
-<script async
-src="https://www.googletagmanager.com/gtag/js?id=G-FJ96KMB5TG"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-FJ96KMB5TG');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJ96KMB5TG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-FJ96KMB5TG', {
+      debug_mode: true,
+      send_page_view: true
+    });
+    // Debug logging
+    console.log('GA Initialized');
+    gtag('event', 'page_view', {
+      page_title: document.title,
+      page_location: window.location.href,
+      send_to: 'G-FJ96KMB5TG'
+    });
+  </script>
 </head>
 
 <body>
