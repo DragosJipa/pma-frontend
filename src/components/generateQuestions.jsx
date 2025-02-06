@@ -3,10 +3,6 @@ import TextareaAutosize from 'react-textarea-autosize';
 import CustomDropdown from './CustomDropdown';
 
 const GenerateQuestions = ({ questions, formData, handleInputChange, errors, isFirstSet }) => {
-    console.log(questions);
-    console.log('isFirstSet', isFirstSet);
-
-
     const isDropdown = questions?.type === 'select';
     const isRadio = questions?.type === 'radio';
     const isOpenEnded = questions?.type === 'open-ended';

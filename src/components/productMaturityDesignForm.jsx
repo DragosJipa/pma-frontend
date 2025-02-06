@@ -49,7 +49,6 @@ const ProductMaturityAssessment = () => {
 
     // const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://product-maturity.onrender.com';
     const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://api.pma.moduscreate.com';
-    console.log('baseURL:', baseURL, process.env.NODE_ENV, process.env.REACT_APP_HUBSPOT_OAUTH_TOKEN);
 
     const getSectionTitle = (index) => {
         switch (index) {
@@ -73,7 +72,6 @@ const ProductMaturityAssessment = () => {
         axios.get(`${baseURL}/api/questions`)
             .then(response => {
                 setQuestions(response.data);
-                console.log('Questions:', response.data);
                 if (assessmentData && assessmentData.responses) {
                     setFormData(assessmentData.responses);
                 } else {
@@ -141,7 +139,6 @@ const ProductMaturityAssessment = () => {
             }
         }
     };
-    console.log('each question formData:', formData);
 
     const handleNext = useCallback((e) => {
         e.preventDefault();
@@ -157,18 +154,14 @@ const ProductMaturityAssessment = () => {
             const isLastMainQuestion = currentQuestionIndex >= questions.length - 1 && isLastInnerQuestion;
 
             if (isEmail) {
-                console.log('formData:', formData.email);
                 if (formData?.email) {
                     axios.post(`${baseURL}/api/hubspot`, { email: formData.email })
                         .then(response => {
                             setIsEmail(false);
-                            console.log('HubSpot response:', response.data);
                             setFormData({
                                 ...formData,
                                 assessmentId: response?.data?.assessment?.id,
                             });
-                            console.log('formData:', formData);
-
                         })
                         .catch(error => {
                             console.error('HubSpot error:', error);

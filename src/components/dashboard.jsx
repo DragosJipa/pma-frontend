@@ -23,9 +23,6 @@ const Dashboard = () => {
         return savedData ? JSON.parse(savedData) : null;
     });
     const pdfRef = useRef(null);
-
-    console.log('assessmentData:', assessmentData);
-
     useEffect(() => {
         if (assessmentData) {
             sessionStorage.setItem('assessmentData', JSON.stringify(assessmentData));
@@ -105,14 +102,6 @@ const Dashboard = () => {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-
-            console.log('PDF downloaded successfully');
-
-            // await axios.post(`${baseURL}/api/mail`, {
-            //     pdf: base64Data,
-            //     email: assessmentData?.responses?.email
-            // });
-            console.log('Email sent successfully');
         } catch (error) {
             console.error('Error handling download:', error);
         }

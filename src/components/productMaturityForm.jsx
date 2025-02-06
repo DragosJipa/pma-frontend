@@ -27,7 +27,6 @@ const ProductMaturityForm = () => {
     axios.get(`${baseURL}/api/questions`)
       .then(response => {
         setQuestions(response.data);
-        console.log('Questions:', response.data);
         // Check if there is existing data in the context
         if (assessmentData && assessmentData.responses) {
           setFormData(assessmentData.responses);
@@ -56,7 +55,6 @@ const ProductMaturityForm = () => {
       [questionId]: value,
     });
     if (window._hsq) {
-      console.log('window._hsq:', window._hsq);
       window._hsq.push(['trackEvent', {
         id: questionId,
         value: value,

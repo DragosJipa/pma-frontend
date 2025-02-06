@@ -48,7 +48,6 @@ const Roadmapc = ({ goalCards }) => {
             setContainerWidth(width);
             setLineWidth(Math.floor((width - (totalLines * 2)) / totalLines));
             setCardWidth(singleCardRef.current.scrollWidth);
-            console.log(singleCardRef.current.scrollWidth);
 
             setGapBetweenCards((cardsContainerRef.current.scrollWidth - singleCardRef.current.scrollWidth * goalCards.length) / (goalCards.length - 1));
         }

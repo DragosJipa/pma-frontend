@@ -14,8 +14,6 @@ const useGoogleAnalytics = () => {
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-029M7KP0YX');
-    // Debug logging
-    console.log('GA Initialized');
     `;
 
     // Append scripts

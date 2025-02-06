@@ -69,7 +69,6 @@ export const populateDummyResponses = (questions) => {
     });
   });
 
-  console.log(`Generated dummy data for ${questions.length} questions:`, dummyData);
   return dummyData; // Return the dummy data to be set in the form state
 };
 
@@ -88,8 +87,6 @@ export const useCheckProcessingStatus = () => {
       const response = await axios.get(`${baseURL}/api/result-status/${taskId}`);
       const status = response.data.status;
 
-      console.log('Processing status is:', status);
-
       if (status === 'completed') {
         // Update context with completed data
         setAssessmentData((prevData) => {
@@ -98,13 +95,10 @@ export const useCheckProcessingStatus = () => {
             interpretation: response.data.result, // Store result in context
             status: 'completed', // Store status in context
           };
-
-          console.log('Updated assessmentData after completion:', updatedData);
           return updatedData;
         });
 
         // Redirect to summary after completion
-        console.log('Task completed, redirecting to /summary');
         navigate('/dashboard');
       } else if (status === 'processing') {
         setTimeout(() => checkProcessingStatus(taskId), 5000); // Poll every 5 seconds
@@ -132,10 +126,8 @@ export const useSubmitFormData = () => {
 
     try {
       const response = await axios.post(`${baseURL}/api/submit`, formData);
-      console.log('Processing started:', response.data);
 
       const taskId = response.data.taskId;
-      console.log('Received Task ID from server:', taskId);
 
       if (!taskId) {
         console.error('No taskId returned from server.');
@@ -148,7 +140,6 @@ export const useSubmitFormData = () => {
           ...(prevData || {}),
           taskId: taskId,
         };
-        console.log('Updated assessmentData after taskId is written:', updatedData);
         return updatedData;
       });
 
