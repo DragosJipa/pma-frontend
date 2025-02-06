@@ -44,8 +44,11 @@ const StartPage = () => {
                 </h1>
             </div>
             {/* Main Content Container */}
-            <div className="flex flex-col items-start justify-start flex-grow mobile-s:px-5 md:px-40 2xl:px-[17rem] 3xl:px-72 pt-48 3xl:pt-96">
+            <div className="flex flex-col items-start justify-start flex-grow mobile-s:px-5 md:px-40 2xl:px-[17rem] 3xl:px-72 pt-20 3xl:pt-96">
                 {/* Heading and Description */}
+                <span className='mb-20'>
+                    <img src='/moduscreate.svg' alt='Modus Create' />
+                </span>
                 <div className="w-full max-w-full flex flex-col gap-4 lg:gap-10">
                     <h1 className="hidden large:block font-ibm-plex-mono gradient-color-text font-semibold text-2xl lg:text-3xl xl:text-[36px] leading-tight lg:leading-snug xl:leading-[46.8px] tracking-wide">
                         Product Maturity Assessment
