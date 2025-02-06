@@ -215,51 +215,172 @@ const LandingPage = () => {
                         <div>
                             <h4 className="font-semibold mb-4 gradient-color-text-2">What We Do</h4>
                             <ul className="space-y-2 text-sm text-gray-400">
-                                <li>Digital Strategy</li>
-                                <li>Platform & Cloud</li>
-                                <li>Product Development</li>
-                                <li>Digital Operations</li>
+                                <a
+                                    href="https://moduscreate.com/services/strategy/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                >
+                                    Digital Strategy
+                                </a>
+                                <li>
+                                    <a
+                                        href="https://moduscreate.com/services/platform-modernization/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                    >
+                                        Platform & Cloud</a></li>
+                                <li>
+                                    <a
+                                        href="https://moduscreate.com/services/product-development/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                    >
+                                        Product Development</a></li>
+                                <li>
+                                    <a
+                                        href="https://moduscreate.com/services/digital-operations/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                    >
+                                        Digital Operations</a></li>
                             </ul>
                         </div>
 
                         <div>
                             <h4 className="text-white font-semibold mb-4 gradient-color-text-2">Our Partners</h4>
                             <ul className="space-y-2 text-sm text-gray-400">
-                                <li>Atlassian</li>
-                                <li>Aha!</li>
-                                <li>AWS</li>
-                                <li>Github</li>
-                                <li>Ionic</li>
-                                <li>Other Partners</li>
+                                <li>
+                                    <a
+                                        href="https://moduscreate.com/partners/atlassian/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                    >Atlassian</a></li>
+                                <li><a
+                                    href="https://moduscreate.com/partners/aha/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                >Aha!</a></li>
+                                <li><a
+                                    href="https://moduscreate.com/partners/aws/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                >AWS</a></li>
+                                <li><a
+                                    href="https://moduscreate.com/partners/github/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                >Github</a></li>
+                                <li><a
+                                    href="https://moduscreate.com/partners/ionic/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                >Ionic</a></li>
+                                <li><a
+                                    href="https://moduscreate.com/partners/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                >Other Partners</a></li>
                             </ul>
                         </div>
 
                         <div>
                             <h4 className="text-white font-semibold mb-4 gradient-color-text-2">Who We Are</h4>
                             <ul className="space-y-2 text-sm text-gray-400">
-                                <li>Our Story</li>
                                 <li>
-                                    <span>Careers</span>
+                                    <a
+                                        href="https://moduscreate.com/about/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                    >
+                                        Our Story
+                                    </a>
+                                </li>
+                                <li>
+                                    <span>
+                                        <a
+                                            href="https://moduscreate.com/careers/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                        >
+                                            Careers
+                                        </a>
+                                    </span>
                                     <span
                                         className="border border-white/10 text-white rounded-full px-2 py-1 text-xs ml-2 hover:opacity-90 transition duration-300"
                                     >
                                         We're hiring!
                                     </span>
                                 </li>
-                                <li>Open Source</li>
+                                <li>
+                                    <a
+                                        href="https://www.tweag.io/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                    >
+                                        Open Source
+                                    </a>
+                                </li>
                             </ul>
                             <h4 className="text-white font-semibold mt-6 mb-4 gradient-color-text-2">Our Work</h4>
                             <ul className="text-sm text-gray-400">
-                                <li>Case Studies</li>
+                                <li>
+                                    <a
+                                        href="https://moduscreate.com/work/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                    >Case Studies
+                                    </a>
+                                </li>
                             </ul>
                         </div>
 
                         <div>
                             <h4 className="text-white font-semibold mb-4 gradient-color-text-2">Our Resources</h4>
                             <ul className="space-y-2 text-sm text-gray-400">
-                                <li>Blog</li>
-                                <li>Innovation Podcast</li>
-                                <li>Guides & Playbooks</li>
+                                <li>
+                                    <a
+                                        href="https://moduscreate.com/insights/blog/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                    >
+                                        Blog
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="https://moduscreate.com/insights/conversations-with-chief-innovators/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                    >
+                                        Innovation Podcast
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="https://moduscreate.com/insights/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-white transition-colors duration-300 inline-flex items-center"
+                                    >
+                                        Guides & Playbooks
+                                    </a>
+                                </li>
                             </ul>
                         </div>
 
