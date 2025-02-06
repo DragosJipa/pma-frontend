@@ -263,8 +263,12 @@ const ProductMaturityAssessment = () => {
             <div className="w-full sm:my-8">
                 <div className="text-xs text-gray-400 flex items-center space-x-2">
                     <div className='flex flex-col'>
+                        <span className='mb-6'>
+                            <img src='/moduscreate.svg' alt='Modus Create' />
+                        </span>
+
                         <span className='inline-flex ml-8'>
-                            <img src='/moduscreate.svg' alt='Modus Create' className='mobile-s:w-24' />
+                            {/* <img src='/moduscreate.svg' alt='Modus Create' className='mobile-s:w-24' /> */}
                             <span className="font-ibm-plex-mono text-[11px] sm:text-sm font-normal leading-[31.2px] tracking-[0.75px] text-left ml-4"
                                 onClick={handlePopulateDummyResponses}
                             >
