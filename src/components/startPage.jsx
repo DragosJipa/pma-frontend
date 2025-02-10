@@ -18,7 +18,7 @@ const StartPage = () => {
     };
 
     return (
-        <div className="relative flex flex-col min-h-[100dvh] bg-startBG text-white">
+        <div className="relative flex flex-col min-h-[100dvh] bg-startBG text-white 3xl:px-80">
             <div className="flex items-center justify-between w-full p-4 large:hidden">
                 <button className='mt-2' onClick={handlePrevious}>
                     <svg

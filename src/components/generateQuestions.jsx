@@ -68,7 +68,7 @@ const GenerateQuestions = ({ questions, formData, handleInputChange, errors, isF
 
     return (
         <div>
-            <div className={`w-full ${isRadio ? 'pt-0 sm:pt-[20vh] xl:pt-[5vh] 3xl:pt-[20vh]' : 'mobile-s:pt-[10vh] 3xl:pt-[20vh] max-w-4xl'}`}>
+            <div className={`w-full ${isRadio ? 'pt-0 sm:pt-[20vh] xl:pt-[5vh] 3xl:pt-[20vh]' : 'mobile-s:pt-[10vh] 3xl:pt-[15vh] max-w-4xl'}`}>
                 <div className="font-ibm-plex-mono text-5xl font-normal leading-[62.4px] tracking-[0.75px] text-left text-gray-100 mb-4">
                     <div>
                         {renderQuestionText(questions?.question, questions?.id)}

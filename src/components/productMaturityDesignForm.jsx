@@ -276,7 +276,7 @@ const ProductMaturityAssessment = () => {
         // <div className="flex flex-col items-start justify-start h-screen bg-customBG text-white p-4 sm:px-14 md:px-20 lg:px-32 overflow-hidden">
         <div className="flex flex-col min-h-[100dvh] bg-customBG text-white px-4 pt-4 sm:px-14 md:px-20 lg:px-40 2xl:px-[17rem]">
             {/* Top navigation */}
-            <div className="w-full sm:my-8">
+            <div className="w-full sm:my-8 3xl:px-80">
                 <div className="text-xs text-gray-400 flex items-center space-x-2">
                     <div className='flex flex-col'>
                         <span className='mb-6'>
@@ -346,7 +346,7 @@ const ProductMaturityAssessment = () => {
                             ease: "easeOut"
                         }
                     }}
-                    className="w-full flex flex-col h-full"
+                    className="w-full flex flex-col h-full 3xl:px-80"
                     onAnimationStart={() => setIsAnimating(true)}
                 >
                     <div className="flex-grow overflow-y-auto h-[calc(60vh)] scrollbar-hide">
@@ -363,7 +363,7 @@ const ProductMaturityAssessment = () => {
             </AnimatePresence>
 
             {/* Bottom progress indicator */}
-            <div className="w-full max-w-5xl flex justify-between items-center mt-[clamp(2rem, 5.5vh,6rem)] mobile-s:sticky lg:relative mobile-s:bottom-10 sm:bottom-0 mobile-s:z-10 ">
+            <div className="w-full max-w-5xl 3xl:max-w-7xl flex justify-between items-center mt-[clamp(2rem, 5.5vh,6rem)] mobile-s:sticky lg:relative mobile-s:bottom-10 sm:bottom-0 mobile-s:z-10 3xl:pl-80">
                 {/* Dynamic Dots */}
                 <div className="flex space-x-2">
                     {[...Array(questions[currentQuestionIndex].questions.length)].map((_, index) => (
@@ -385,7 +385,7 @@ const ProductMaturityAssessment = () => {
                     <button
                         onClick={handleNext}
                         disabled={!isQuestionAnswered(visibleSection, formData)}
-                        className={`flex items-center h-12 px-5 text-white font-mono font-normal text-lg leading-snug tracking-wide rounded-lg group ${!isQuestionAnswered(visibleSection, formData) ? 'opacity-30' : ''}`}
+                        className={`flex items-center h-12 px-5 3xl:px-16 3xl:ml-10 text-white font-mono font-normal text-lg leading-snug tracking-wide rounded-lg group ${!isQuestionAnswered(visibleSection, formData) ? 'opacity-30' : ''}`}
                     >
                         {currentQuestionIndex === questions.length - 1 && insideCurrentQuestionIndex === questions[currentQuestionIndex].questions.length - 1 ? 'Submit' : 'Continue'}
                         {!isQuestionAnswered(visibleSection, formData) ? (<img src='arrow-right-disabled.svg' alt='disabled arrow' className='flex items-center justify-center w-10 h-10 ml-2' />) : (<span className="flex items-center justify-center w-10 h-10 ml-2 transform transition-transform duration-300 group-hover:translate-x-1">
