@@ -212,6 +212,22 @@ const ProductMaturityAssessment = () => {
         };
     }, [formData, handleNext]);
 
+    const isQuestionAnswered = (question, formData) => {
+        if (!question) return false;
+
+        switch (question.type) {
+            case 'select':
+                return !!formData[question.id];
+            case 'radio':
+                return !!formData[question.id];
+            case 'open-ended':
+                return !!formData[question.id]?.trim();
+            case 'email':
+                return !!formData[question.id] && !errors[question.id];
+            default:
+                return false;
+        }
+    };
 
     const handlePrevious = (e) => {
         e.preventDefault();
@@ -258,7 +274,7 @@ const ProductMaturityAssessment = () => {
 
     return (
         // <div className="flex flex-col items-start justify-start h-screen bg-customBG text-white p-4 sm:px-14 md:px-20 lg:px-32 overflow-hidden">
-        <div className="flex flex-col min-h-[100dvh] bg-customBG text-white p-4 sm:px-14 md:px-20 lg:px-32">
+        <div className="flex flex-col min-h-[100dvh] bg-customBG text-white px-4 pt-4 sm:px-14 md:px-20 lg:px-40 2xl:px-[17rem]">
             {/* Top navigation */}
             <div className="w-full sm:my-8">
                 <div className="text-xs text-gray-400 flex items-center space-x-2">
@@ -266,14 +282,19 @@ const ProductMaturityAssessment = () => {
                         <span className='mb-6'>
                             <img src='/moduscreate.svg' alt='Modus Create' />
                         </span>
+                        <span className="font-ibm-plex-mono text-[11px] sm:text-lg font-normal leading-[31.2px] tracking-[0.75px] text-left mb-6"
+                            onClick={handlePopulateDummyResponses}
+                        >
+                            Product Maturity Assessment
+                        </span>
 
                         <span className='inline-flex ml-8'>
                             {/* <img src='/moduscreate.svg' alt='Modus Create' className='mobile-s:w-24' /> */}
-                            <span className="font-ibm-plex-mono text-[11px] sm:text-sm font-normal leading-[31.2px] tracking-[0.75px] text-left ml-4"
+                            {/* <span className="font-ibm-plex-mono text-[11px] sm:text-sm font-normal leading-[31.2px] tracking-[0.75px] text-left ml-4"
                                 onClick={handlePopulateDummyResponses}
                             >
                                 Product Maturity Assessment
-                            </span>
+                            </span> */}
                         </span>
                         <div className='inline-flex'>
                             <button className="w-[32px] h-[32px]" onClick={handlePrevious}>
@@ -342,7 +363,7 @@ const ProductMaturityAssessment = () => {
             </AnimatePresence>
 
             {/* Bottom progress indicator */}
-            <div className="w-full max-w-5xl flex justify-between items-center mt-[clamp(2rem,10vh,6rem)] mobile-s:sticky lg:relative mobile-s:bottom-10 mobile-s:z-10 ">
+            <div className="w-full max-w-5xl flex justify-between items-center mt-[clamp(2rem, 5.5vh,6rem)] mobile-s:sticky lg:relative mobile-s:bottom-10 sm:bottom-0 mobile-s:z-10 ">
                 {/* Dynamic Dots */}
                 <div className="flex space-x-2">
                     {[...Array(questions[currentQuestionIndex].questions.length)].map((_, index) => (
@@ -363,12 +384,14 @@ const ProductMaturityAssessment = () => {
                 <div>
                     <button
                         onClick={handleNext}
-                        className="flex items-center h-12 px-5 text-white font-mono font-normal text-lg leading-snug tracking-wide rounded-lg group"
+                        disabled={!isQuestionAnswered(visibleSection, formData)}
+                        className={`flex items-center h-12 px-5 text-white font-mono font-normal text-lg leading-snug tracking-wide rounded-lg group ${!isQuestionAnswered(visibleSection, formData) ? 'opacity-30' : ''}`}
                     >
                         {currentQuestionIndex === questions.length - 1 && insideCurrentQuestionIndex === questions[currentQuestionIndex].questions.length - 1 ? 'Submit' : 'Continue'}
-                        <span className="flex items-center justify-center w-10 h-10 ml-2 transform transition-transform duration-300 group-hover:translate-x-1">
+                        {!isQuestionAnswered(visibleSection, formData) ? (<img src='arrow-right-disabled.svg' alt='disabled arrow' className='flex items-center justify-center w-10 h-10 ml-2' />) : (<span className="flex items-center justify-center w-10 h-10 ml-2 transform transition-transform duration-300 group-hover:translate-x-1">
                             <img src={'./ArrowRightIcon.svg'} alt="Arrow Right" className="w-full h-full" />
-                        </span>
+                        </span>)}
+
                     </button>
                 </div>
             </div>

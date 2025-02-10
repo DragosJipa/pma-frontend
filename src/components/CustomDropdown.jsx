@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './CustomDropdown.css';
 
 const CustomDropdown = ({ options, value, onChange, isDashboard = false, onDownload, downloadIcon }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +38,7 @@ const CustomDropdown = ({ options, value, onChange, isDashboard = false, onDownl
                 </svg>
             </div>
             {isOpen && (
-                <div className={`absolute w-full ${isDashboard ? 'bg-blackBox' : 'bg-selectBG'} text-white mt-1 rounded shadow-lg z-10 font-ibm-plex-mono max-h-[40vh] overflow-y-auto scrollbar-hide`}>
+                <div className={`absolute w-full ${isDashboard ? 'bg-blackBox' : 'bg-selectBG'} text-white mt-1 rounded shadow-lg z-10 font-ibm-plex-mono max-h-[250px] overflow-y-auto custom-scrollbar`}>
                     {options.map((option, index) => (
                         <div
                             key={index}

@@ -192,7 +192,10 @@ const LandingPage = () => {
                                         className="md:inline-flex items-center gap-2 font-ibm-plex-mono text-white rounded-full px-6 py-2 mobile-s:text-sm mobile-m:text-base mobile-l:text-lg font-medium transition-all bg-gradient-to-r from-[#624BED] to-[#CE5682]">
                                         Take the Free Assessment
                                     </button>
-                                    <a href="https://moduscreate.com/contact/"
+                                    <a
+                                        href="https://moduscreate.com/contact/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="border border-white hover:border-white text-white px-6 py-3 mobile-s:text-sm mobile-m:text-lg rounded-full transition duration-300"
                                     >
                                         Talk to an Expert
@@ -387,19 +390,22 @@ const LandingPage = () => {
                         <div>
                             <h4 className="text-white font-semibold mb-4 gradient-color-text-2">Get Weekly Digital Transformation Insights</h4>
                             <div className="space-y-4">
-                                <input
+                                {/* <input
                                     type="email"
                                     placeholder="Email Address"
                                     className="w-full px-4 py-2 bg-[#232323] rounded-md text-white text-sm border border-gray-700 focus:outline-none focus-gradient"
-                                />
+                                /> */}
                                 {/* <button className="px-6 py-2 bg-gradient-to-r from-[#624BED] to-[#CE5682] text-white rounded-full text-sm hover:opacity-90 transition duration-300">
                                     Stay Informed
                                 </button> */}
-                                <button
+                                <a
+                                    href="https://moduscreate.com/insights/blog"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="border border-white hover:border-white text-white px-6 py-2 mobile-s:text-xs rounded-full transition duration-300"
                                 >
                                     Stay Informed
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -415,22 +421,33 @@ const LandingPage = () => {
                         </div>
 
                         <div className="flex items-center space-x-6 text-sm text-gray-400">
-                            <a href="https://moduscreate.com/privacy-policy/" className="hover:text-white">Privacy Policy</a>
-                            <a href="https://moduscreate.com/sitemap/" className="hover:text-white">Sitemap</a>
+                            <a href="https://moduscreate.com/privacy-policy/" target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-white">Privacy Policy</a>
                             <div className="flex items-center space-x-4">
-                                <a href="https://github.com/moduscreateorg" className="hover:text-white">
+                                <a href="https://github.com/moduscreateorg" target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white">
                                     {github}
                                 </a>
-                                <a href="https://www.youtube.com/moduscreate" className="hover:text-white">
+                                <a href="https://www.youtube.com/moduscreate" target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white">
                                     {youtube}
                                 </a>
-                                <a href="https://x.com/moduscreate" className="hover:text-white">
+                                <a href="https://x.com/moduscreate" target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white">
                                     {x}
                                 </a>
-                                <a href="https://www.linkedin.com/company/modus-create" className="hover:text-white">
+                                <a href="https://www.linkedin.com/company/modus-create" target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white">
                                     {linkedin}
                                 </a>
-                                <a href="https://www.facebook.com/moduscreate/" className="hover:text-white">
+                                <a href="https://www.facebook.com/moduscreate/" target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white">
                                     {facebook}
                                 </a>
                             </div>
