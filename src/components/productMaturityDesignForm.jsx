@@ -29,8 +29,9 @@ const ProductMaturityAssessment = () => {
     const { checkProcessingStatus } = useCheckProcessingStatus();
     const [animationKey, setAnimationKey] = useState(`${currentQuestionIndex}-${insideCurrentQuestionIndex}-${lastAction}`);
     const [visibleSection, setVisibleSection] = useState(null);
-    const [isEmail, setIsEmail] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [hubspotCallMade, setHubspotCallMade] = useState(false);
+    const [continueClicked, setContinueClicked] = useState(false);
 
     useEffect(() => {
         setAnimationKey(`${currentQuestionIndex}-${insideCurrentQuestionIndex}-${lastAction}`);
@@ -117,7 +118,6 @@ const ProductMaturityAssessment = () => {
             [questionId]: value,
         });
         if (questionId === 'email') {
-            setIsEmail(true);
             const newErrors = { ...errors };
             delete newErrors[questionId];
             setErrors(newErrors);
@@ -140,8 +140,28 @@ const ProductMaturityAssessment = () => {
         }
     };
 
+    useEffect(() => {
+        if (formData.email && !hubspotCallMade && !errors.email && continueClicked) {
+            const domain = formData.email.split('@')[1];
+            if (!isPersonalEmailDomain(domain)) {
+                axios.post(`${baseURL}/api/hubspot`, { email: formData.email })
+                    .then(response => {
+                        setHubspotCallMade(true);
+                        setFormData({
+                            ...formData,
+                            assessmentId: response?.data?.assessment?.id,
+                        });
+                    })
+                    .catch(error => {
+                        console.error('HubSpot error:', error);
+                    });
+            }
+        }
+    }, [formData.email, errors.email, hubspotCallMade, continueClicked, baseURL]);
+
     const handleNext = useCallback((e) => {
         e.preventDefault();
+        setContinueClicked(true);
         if (!formData.email) {
             setErrors({ ...errors, email: 'Email is required.' });
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
@@ -152,22 +172,6 @@ const ProductMaturityAssessment = () => {
             setLastAction('forward');
             const isLastInnerQuestion = questions[currentQuestionIndex].questions.length - 1 === insideCurrentQuestionIndex;
             const isLastMainQuestion = currentQuestionIndex >= questions.length - 1 && isLastInnerQuestion;
-
-            if (isEmail) {
-                if (formData?.email) {
-                    axios.post(`${baseURL}/api/hubspot`, { email: formData.email })
-                        .then(response => {
-                            setIsEmail(false);
-                            setFormData({
-                                ...formData,
-                                assessmentId: response?.data?.assessment?.id,
-                            });
-                        })
-                        .catch(error => {
-                            console.error('HubSpot error:', error);
-                        });
-                }
-            }
 
             if (!isLastMainQuestion) {
                 if (isLastInnerQuestion) {
@@ -197,7 +201,7 @@ const ProductMaturityAssessment = () => {
                     });
             }
         }
-    }, [formData, errors, questions, currentQuestionIndex, insideCurrentQuestionIndex, isEmail, baseURL, checkProcessingStatus, assessmentData, setAssessmentData]);
+    }, [formData, errors, questions, currentQuestionIndex, insideCurrentQuestionIndex, baseURL, checkProcessingStatus, assessmentData, setAssessmentData]);
 
     useEffect(() => {
         const handleKeyPress = (e) => {
